@@ -447,3 +447,74 @@ El presente informe documenta el desarrollo, pruebas y despliegue del prototipo 
   ]
 }
 
+import os
+import json
+
+def handle_webhook_request(req_data):
+    """
+    Procesador de Webhook para Dialogflow CX / n8n
+    """
+    session_info = req_data.get("sessionInfo", {})
+    parameters = session_info.get("parameters", {})
+
+    nombre = parameters.get("nombre_ciudadano", "Anónimo")
+    correo = parameters.get("correo_contacto", "N/A")
+    sector = parameters.get("sector", "General")
+
+    response_text = f"Solicitud registrada para {nombre} ({sector}). Contacto: {correo}"
+
+    return {
+        "fulfillment_response": {
+            "messages": [
+                {
+                    "text": {
+                        "text": [response_text]
+                    }
+                }
+            ]
+        }
+    }
+
+if __name__ == "__main__":
+    test_req = {
+        "sessionInfo": {
+            "parameters": {
+                "nombre_ciudadano": "María López",
+                "correo_contacto": "maria@ejemplo.sv",
+                "sector": "Salud"
+            }
+        }
+    }
+    print(json.dumps(handle_webhook_request(test_req), indent=2))
+functions-framework>=3.0.0
+gspread>=5.10.0
+google-auth>=2.20.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+{
+  "type": "service_account",
+  "project_id": "csdc-chatbot-cloud",
+  "client_email": "csdc-bot-sa@csdc-chatbot-cloud.iam.gserviceaccount.com",
+  "note": "Reemplazar con el archivo service_account.json descargado desde GCP Console"
+}
+
+{
+  "type": "service_account",
+  "project_id": "csdc-chatbot-cloud",
+  "client_email": "csdc-bot-sa@csdc-chatbot-cloud.iam.gserviceaccount.com",
+  "note": "Reemplazar con el archivo service_account.json descargado desde GCP Console"
+}
+
+#!/bin/bash
+# Script de prueba local para Webhook Backend
+WEBHOOK_URL=${1:-"http://localhost:8080"}
+
+echo "=== Probando Endpoint del Webhook CSDC ==="
+curl -X POST "$WEBHOOK_URL" \
+     -H "Content-Type: application/json" \
+     -d @tests/test_webhook_payload.json
+
+echo -e "\n=== Prueba Finalizada ==="
+
+
