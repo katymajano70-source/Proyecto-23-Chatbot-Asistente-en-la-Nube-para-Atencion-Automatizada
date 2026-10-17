@@ -41,9 +41,9 @@ Estado actual del proyecto: Actualmente dicho proyecto esta en proceso de desarr
 
 | Recurso | Plataforma / Proveedor | Responsable | Uso Previsto | Límites y Observaciones |
 | :--- | :--- | :--- | :--- | :--- |
-| **Plataforma Conversacional** | Dialogflow CX / GCP | Ing. Integración Cloud Jr. | Motor NLP, manejo de intenciones, entidades y rutas de páginas. | Free Tier de GCP / Créditos educativos. |
-| **Plataforma Automatización** | n8n Cloud / Self-hosted | Dev Automatización Jr. | Orquestación de flujos, webhook middleware y conexiones HTTP. | Instancia de prueba controlada. |
-| **Canal de Mensajería** | Bot Father / Telegram API | Diseñador CX / Ing. Integración | Interfaz conversacional con el ciudadano. | Sandbox con datos simulados. |
+| **Plataforma Conversacional** | Dialogflow CX / | Ing. Integración Cloud Jr. | Motor NLP, manejo de intenciones, entidades y rutas de páginas. | Free Tier de GCP / Créditos educativos. |
+| **Plataforma Automatización** | / Self-hosted | Dev Automatización Jr. | Orquestación de flujos, webhook middleware y conexiones HTTP. | Instancia de prueba controlada. |
+| **Canal de Mensajería** |  / Telegram API | Diseñador CX / Ing. Integración | Interfaz conversacional con el ciudadano. | Sandbox con datos simulados. |
 | **Almacenamiento Backend** | Google Sheets API | Dev Automatización Jr. | Registro estandarizado de solicitudes e incidencias. | Sin datos personales reales. |
 | **Control de Versiones** | GitHub | Líder de Proyecto Jr. | Repositorio centralizado de código, flujos JSON y documentación `/docs`. | Repositorio público/privado con `.gitignore`. |
 | **Herramientas de Testing** | cURL / Postman | QA / Documentador Jr. | Validación de payloads JSON y endpoints de fulfillment. | Pruebas de integración asincrónicas. |
