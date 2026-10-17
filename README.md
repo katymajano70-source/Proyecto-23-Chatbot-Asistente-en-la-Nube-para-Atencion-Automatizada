@@ -6,11 +6,32 @@ Chatbot asistente en la nube con Dialogflow CX e integracion a WhatsApp y Google
 Repositorio profesional para el proyecto **Chatbot Asistente en la Nube para Atención Automatizada (Lite)** desarrollado para el **Centro de Servicios Digitales Ciudadanos (CSDC)** de la Secretaría de Innovación de El Salvador (ESIT).
 
 ---
+hatbot asistente en la nube con Dialogflow CX e integracion a WhatsApp y Google Sheets para Centro de Servicios Digitales Cuidadanos CSDC
+
+markdown Chatbot Asistente en la Nube - CSDC (Versión Lite)
+
+Fase correspondiente: FASE 0: Onboarding y planificacion
+
+FASE 1: Analisis de casos de uso e intenciones del Chatbot
+
+Nombre del equipo:
+
+Integrante y rol:
+
+katerin yamileth serrano majano - Lider del proyecto Jr., diseñadora y desarrolladora tecnico del proyecto.
+
+Fecha de entrega: FASE 0: Onboarding y planificacion: del 23 de septiembre al 4 de octubre FASE 1: Analisis de casos de uso e intenciones del chatbot : del 05 al 18 de octubre
+
+Resumen ejecutivo.
+
+Qué se realizó: Este repositorio contiene la documentación, flujos y scripts de integración para el chatbot automatizado del *Centro de Servicios Digitales Ciudadanos (CSDC). El sistema está diseñado para reducir los tiempos de respuesta y mitigar la sobrecarga de atención manual mediante el uso de **Dialogflow CX, *WhatsApp y Google Sheets.
+
+Estado actual del proyecto: Actualmente dicho proyecto esta en proceso de desarrollo.
 
 ## 1. Asignación de Roles del Equipo
 * **Líder de Proyecto Jr.:** Coordinación de backlog, cumplimiento de fases y enlace con tutoría.
 * **Diseñador/a de Conversaciones Jr. (CX/UX):** Definición de intenciones, árbol de diálogo, tono y mensajes.
-* **Ingeniero/a de Integración Cloud Jr.:** Configuración de Dialogflow CX, n8n y canales (Telegram/Web).
+* **Ingeniero/a de Integración Cloud Jr.:** Configuración de Dialogflow CX y canales (Telegram/Web).
 * **Desarrollador/a de Automatización Jr.:** Implementación de webhooks, almacenamiento en Google Sheets y notificaciones.
 * **QA / Documentador Técnico Jr.:** Matriz de pruebas conversacionales, bitácora semanal e informe final.
 
@@ -408,42 +429,6 @@ def handle_webhook_request(req_data):
         }
     }
 
-if __name__ == "__main__":
-    test_req = {
-        "sessionInfo": {
-            "parameters": {
-                "nombre_ciudadano": "María López",
-                "correo_contacto": "maria@ejemplo.sv",
-                "sector": "Salud"
-            }
-        }
-    }
-    print(json.dumps(handle_webhook_request(test_req), indent=2))
-functions-framework>=3.0.0
-gspread>=5.10.0
-google-auth>=2.20.0
-requests>=2.31.0
-python-dotenv>=1.0.0
-
-{
-  "type": "service_account",
-  "project_id": "csdc-chatbot-cloud",
-  "client_email": "csdc-bot-sa@csdc-chatbot-cloud.iam.gserviceaccount.com",
-  "note": "Reemplazar con el archivo service_account.json descargado desde GCP Console"
-}
-
-{
-  "type": "service_account",
-  "project_id": "csdc-chatbot-cloud",
-  "client_email": "csdc-bot-sa@csdc-chatbot-cloud.iam.gserviceaccount.com",
-  "note": "Reemplazar con el archivo service_account.json descargado desde GCP Console"
-}
-
-#!/bin/bash
-# Script de prueba local para Webhook Backend
-WEBHOOK_URL=${1:-"http://localhost:8080"}
-
-echo "=== Probando Endpoint del Webhook CSDC ==="
 curl -X POST "$WEBHOOK_URL" \
      -H "Content-Type: application/json" \
      -d @tests/test_webhook_payload.json
