@@ -46,34 +46,6 @@ csdc-chatbot-repo/
 
 
 
-# Configuración del Entorno - CSDC Chatbot Cloud
-GOOGLE_APPLICATION_CREDENTIALS=service_account.json
-SPREADSHEET_NAME=Registro_Solicitudes_CSDC
-TELEGRAM_BOT_TOKEN=tu_telegram_bot_token_aqui
-GMAIL_SENDER_USER=notificaciones@csdc.gob.sv
-PORT=8080
-
-# Environment variables
-.env
-*.env
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-venv/
-ENV/
-
-# Credentials & Service Accounts
-service_account.json
-*.json
-!flows/*.json
-!tests/*.json
-
-# IDEs & System
-.vscode/
-.idea/
-.DS_Store
 
 # Bitácora de Trabajo Semanal (Semanas 1 a 10)
 **Proyecto:** Chatbot Asistente en la Nube para Atención Ciudadana (CSDC)  
