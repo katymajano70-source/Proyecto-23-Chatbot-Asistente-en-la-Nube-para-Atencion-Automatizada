@@ -18,7 +18,7 @@ Nombre del equipo:
 
 Integrante y rol:
 
-katerin yamileth serrano majano - Lider del proyecto Jr., diseñadora y desarrolladora tecnico del proyecto.
+KATERIN YAMLETH SERRANO MAJANO - Lider del proyecto Jr., diseñadora y desarrolladora tecnico del proyecto.
 
 Fecha de entrega: FASE 0: Onboarding y planificacion: del 23 de septiembre al 4 de octubre FASE 1: Analisis de casos de uso e intenciones del chatbot : del 05 al 18 de octubre
 
