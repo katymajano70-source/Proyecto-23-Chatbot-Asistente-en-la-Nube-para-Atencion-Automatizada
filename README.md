@@ -34,199 +34,7 @@ Repositorio profesional para el proyecto **Chatbot Asistente en la Nube para Ate
 * **Control de Commits:** Commits descriptivos con prefijos (`feat:`, `docs:`, `fix:`, `test:`).
 * **Protección de Datos:** Estrictamente prohibido incluir tokens, llaves privadas o claves API en el código fuente (uso de `.env.example`).
 
-{
-  "displayName": "CSDC_Chatbot_Atencion_Ciudadana_CX",
-  "defaultLanguageCode": "es",
-  "timeZone": "America/El_Salvador",
-  "description": "Prototipo Lite de Chatbot Asistente en la Nube para el Centro de Servicios Digitales Ciudadanos (CSDC)",
-  "intents": [
-    {
-      "displayName": "welcome_intent",
-      "trainingPhrases": [
-        "Hola", "Buenas tardes", "Inicio", "Necesito información sobre trámites", "¿Qué consultas puedo hacer?"
-      ],
-      "responses": [
-        "¡Hola! 👋 Bienvenido al Asistente Virtual del Centro de Servicios Digitales Ciudadanos (CSDC). ¿En qué puedo ayudarte hoy?\n1. Trámites en Simple.sv\n2. Crear Identidad Digital\n3. Registrar Caso / Denuncia (SAC)\n4. Cursos ESIT\n5. Soporte Técnico"
-      ]
-    },
-    {
-      "displayName": "consultar_tramite_simplesv",
-      "trainingPhrases": [
-        "¿Cuánto cuestan los antecedentes penales?",
-        "Requisitos para solvencia policial",
-        "Pasaporte en el exterior",
-        "Apostillado electrónico",
-        "Trámites disponibles en Simple.sv"
-      ]
-    },
-    {
-      "displayName": "crear_identidad_digital",
-      "trainingPhrases": [
-        "¿Cómo creo mi cuenta en Simple.sv?",
-        "No puedo iniciar sesión en login.gob.sv",
-        "Pasos para registrar mi Identidad Digital",
-        "¿Qué necesito para registrarme con DUI?"
-      ]
-    },
-    {
-      "displayName": "registrar_denuncia_sac",
-      "trainingPhrases": [
-        "Quiero poner un reclamo sobre un hospital",
-        "Denuncia anónima en el SAC",
-        "Registrar caso para educación o salud",
-        "Consultar estado de expediente SAC"
-      ]
-    },
-    {
-      "displayName": "informacion_esit",
-      "trainingPhrases": [
-        "Cursos de la ESIT",
-        "Capacitación en Scrum o MySQL",
-        "Escuela Superior de Innovación y Tecnología",
-        "Cursos gratuitos de gobernanza digital"
-      ]
-    },
-    {
-      "displayName": "contacto_soporte",
-      "trainingPhrases": [
-        "Hablar con un operador humano",
-        "Correo de ayuda Simple.sv",
-        "Teléfono del SAC",
-        "Atención al cliente"
-      ]
-    }
-  ]
-}
 
-{
-  "displayName": "CSDC_Chatbot_Atencion_Ciudadana_CX",
-  "defaultLanguageCode": "es",
-  "timeZone": "America/El_Salvador",
-  "description": "Prototipo Lite de Chatbot Asistente en la Nube para el Centro de Servicios Digitales Ciudadanos (CSDC)",
-  "intents": [
-    {
-      "displayName": "welcome_intent",
-      "trainingPhrases": [
-        "Hola", "Buenas tardes", "Inicio", "Necesito información sobre trámites", "¿Qué consultas puedo hacer?"
-      ],
-      "responses": [
-        "¡Hola! 👋 Bienvenido al Asistente Virtual del Centro de Servicios Digitales Ciudadanos (CSDC). ¿En qué puedo ayudarte hoy?\n1. Trámites en Simple.sv\n2. Crear Identidad Digital\n3. Registrar Caso / Denuncia (SAC)\n4. Cursos ESIT\n5. Soporte Técnico"
-      ]
-    },
-    {
-      "displayName": "consultar_tramite_simplesv",
-      "trainingPhrases": [
-        "¿Cuánto cuestan los antecedentes penales?",
-        "Requisitos para solvencia policial",
-        "Pasaporte en el exterior",
-        "Apostillado electrónico",
-        "Trámites disponibles en Simple.sv"
-      ]
-    },
-    {
-      "displayName": "crear_identidad_digital",
-      "trainingPhrases": [
-        "¿Cómo creo mi cuenta en Simple.sv?",
-        "No puedo iniciar sesión en login.gob.sv",
-        "Pasos para registrar mi Identidad Digital",
-        "¿Qué necesito para registrarme con DUI?"
-      ]
-    },
-    {
-      "displayName": "registrar_denuncia_sac",
-      "trainingPhrases": [
-        "Quiero poner un reclamo sobre un hospital",
-        "Denuncia anónima en el SAC",
-        "Registrar caso para educación o salud",
-        "Consultar estado de expediente SAC"
-      ]
-    },
-    {
-      "displayName": "informacion_esit",
-      "trainingPhrases": [
-        "Cursos de la ESIT",
-        "Capacitación en Scrum o MySQL",
-        "Escuela Superior de Innovación y Tecnología",
-        "Cursos gratuitos de gobernanza digital"
-      ]
-    },
-    {
-      "displayName": "contacto_soporte",
-      "trainingPhrases": [
-        "Hablar con un operador humano",
-        "Correo de ayuda Simple.sv",
-        "Teléfono del SAC",
-        "Atención al cliente"
-      ]
-    }
-  ]
-}
-
-import os
-import json
-
-def handle_webhook_request(req_data):
-    """
-    Procesador de Webhook para Dialogflow CX / n8n
-    """
-    session_info = req_data.get("sessionInfo", {})
-    parameters = session_info.get("parameters", {})
-
-    nombre = parameters.get("nombre_ciudadano", "Anónimo")
-    correo = parameters.get("correo_contacto", "N/A")
-    sector = parameters.get("sector", "General")
-
-    response_text = f"Solicitud registrada para {nombre} ({sector}). Contacto: {correo}"
-
-    return {
-        "fulfillment_response": {
-            "messages": [
-                {
-                    "text": {
-                        "text": [response_text]
-                    }
-                }
-            ]
-        }
-    }
-
-if __name__ == "__main__":
-    test_req = {
-        "sessionInfo": {
-            "parameters": {
-                "nombre_ciudadano": "María López",
-                "correo_contacto": "maria@ejemplo.sv",
-                "sector": "Salud"
-            }
-        }
-    }
-    print(json.dumps(handle_webhook_request(test_req), indent=2))
-functions-framework>=3.0.0
-gspread>=5.10.0
-google-auth>=2.20.0
-requests>=2.31.0
-python-dotenv>=1.0.0
-
-{
-  "type": "service_account",
-  "project_id": "csdc-chatbot-cloud",
-  "client_email": "csdc-bot-sa@csdc-chatbot-cloud.iam.gserviceaccount.com",
-  "note": "Reemplazar con el archivo service_account.json descargado desde GCP Console"
-}
-
-{
-  "type": "service_account",
-  "project_id": "csdc-chatbot-cloud",
-  "client_email": "csdc-bot-sa@csdc-chatbot-cloud.iam.gserviceaccount.com",
-  "note": "Reemplazar con el archivo service_account.json descargado desde GCP Console"
-}
-
-#!/bin/bash
-# Script de prueba local para Webhook Backend
-WEBHOOK_URL=${1:-"http://localhost:8080"}
-
-echo "=== Probando Endpoint del Webhook CSDC ==="
-curl -X POST "$WEBHOOK_URL" \
 
 # Plan de Recursos Tecnológicos (Fase 0)
 **Proyecto:** Chatbot Asistente en la Nube para Atención Ciudadana (CSDC)  
@@ -472,163 +280,105 @@ El prototipo conversacional se estructura en cuatro capas desacopladas:
 | **TC-08** | Prueba de Carga Webhook | Petición HTTP POST simultánea (10 req/s) | `registrar_denuncia_sac` | HTTP 200 OK en <500ms; escrituras exitosas en Sheets. | **PASS** |
 
 
-
----
-
-## 1. Asignación de Roles del Equipo
-* **Líder de Proyecto Jr.:** Coordinación de backlog, cumplimiento de fases y enlace con tutoría.
-* **Diseñador/a de Conversaciones Jr. (CX/UX):** Definición de intenciones, árbol de diálogo, tono y mensajes.
-* **Ingeniero/a de Integración Cloud Jr.:** Configuración de Dialogflow CX, n8n y canales (Telegram/Web).
-* **Desarrollador/a de Automatización Jr.:** Implementación de webhooks, almacenamiento en Google Sheets y notificaciones.
-* **QA / Documentador Técnico Jr.:** Matriz de pruebas conversacionales, bitácora semanal e informe final.
-
----
-
-## 2. Inventario de Recursos Cloud y Herramientas
-
-| Recurso | Plataforma / Proveedor | Responsable | Uso Previsto | Límites y Observaciones |
-| :--- | :--- | :--- | :--- | :--- |
-| **Plataforma Conversacional** | Dialogflow CX / GCP | Ing. Integración Cloud Jr. | Motor NLP, manejo de intenciones, entidades y rutas de páginas. | Free Tier de GCP / Créditos educativos. |
-| **Plataforma Automatización** | n8n Cloud / Self-hosted | Dev Automatización Jr. | Orquestación de flujos, webhook middleware y conexiones HTTP. | Instancia de prueba controlada. |
-| **Canal de Mensajería** | Bot Father / Telegram API | Diseñador CX / Ing. Integración | Interfaz conversacional con el ciudadano. | Sandbox con datos simulados. |
-| **Almacenamiento Backend** | Google Sheets API | Dev Automatización Jr. | Registro estandarizado de solicitudes e incidencias. | Sin datos personales reales. |
-| **Control de Versiones** | GitHub | Líder de Proyecto Jr. | Repositorio centralizado de código, flujos JSON y documentación `/docs`. | Repositorio público/privado con `.gitignore`. |
-| **Herramientas de Testing** | cURL / Postman | QA / Documentador Jr. | Validación de payloads JSON y endpoints de fulfillment. | Pruebas de integración asincrónicas. |
-
----
-
-## 3. Acuerdos de Trabajo Asincrónico
-* **Canales de Comunicación:** Discord / WhatsApp para avisos rápidos; GitHub Issues para asignación de tareas.
-* **Control de Commits:** Commits descriptivos con prefijos (`feat:`, `docs:`, `fix:`, `test:`).
-* **Protección de Datos:** Estrictamente prohibido incluir tokens, llaves privadas o claves API en el código fuente (uso de `.env.example`).
-
-{
-  "displayName": "CSDC_Chatbot_Atencion_Ciudadana_CX",
+nombre: "CSDC_Chatbot_Atencion_Ciudadana_CX",
   "defaultLanguageCode": "es",
-  "timeZone": "America/El_Salvador",
+ "America/El_Salvador",
+
   "description": "Prototipo Lite de Chatbot Asistente en la Nube para el Centro de Servicios Digitales Ciudadanos (CSDC)",
-  "intents": [
-    {
+  "intents": 
+    
       "displayName": "welcome_intent",
-      "trainingPhrases": [
+
         "Hola", "Buenas tardes", "Inicio", "Necesito información sobre trámites", "¿Qué consultas puedo hacer?"
-      ],
-      "responses": [
+      
+      "responses":
         "¡Hola! 👋 Bienvenido al Asistente Virtual del Centro de Servicios Digitales Ciudadanos (CSDC). ¿En qué puedo ayudarte hoy?\n1. Trámites en Simple.sv\n2. Crear Identidad Digital\n3. Registrar Caso / Denuncia (SAC)\n4. Cursos ESIT\n5. Soporte Técnico"
-      ]
-    },
-    {
+      
+   consultor: "consultar_tramite_simplesv",
+        "¿Cuánto cuestan los antecedentes penales?",
+        "Requisitos para solvencia policial",
+        "Pasaporte en el exterior",
+        "Apostillado electrónico",
+        "Trámites disponibles en Simple.sv"
+      
+    
+   "crear_identidad_digital",
+        "¿Cómo creo mi cuenta en Simple.sv?",
+        "No puedo iniciar sesión en login.gob.sv",
+        "Pasos para registrar mi Identidad Digital",
+        "¿Qué necesito para registrarme con DUI?"
+  
+  
+  
+"registrar_denuncia_sac",
+    
+"Quiero poner un reclamo sobre un hospital",
+"Denuncia anónima en el SAC",
+"Registrar caso para educación o salud",
+ "Consultar estado de expediente SAC"
+  
+  
+   "informacion_esit",
+        "Cursos de la ESIT",
+        "Capacitación en Scrum o MySQL",
+        "Escuela Superior de Innovación y Tecnología",
+        "Cursos gratuitos de gobernanza digital"
+      
+      "contacto_soporte",
+      "trainingPhrases":
+        "Hablar con un operador humano",
+        "Correo de ayuda Simple.sv",
+        "Teléfono del SAC",
+        "Atención al cliente"
+
+
+  "CSDC_Chatbot_Atencion_Ciudadana_CX",
+"es",
+ "America/El_Salvador",
+  "description": "Prototipo Lite de Chatbot Asistente en la Nube para el Centro de Servicios Digitales Ciudadanos (CSDC)",
+  "intents":
+    
+      "displayName": "welcome_intent",
+      "trainingPhrases": 
+        "Hola", "Buenas tardes", "Inicio", "Necesito información sobre trámites", "¿Qué consultas puedo hacer?"
+    
+      "responses": 
+        "¡Hola! 👋 Bienvenido al Asistente Virtual del Centro de Servicios Digitales Ciudadanos (CSDC). ¿En qué puedo ayudarte hoy?\n1. Trámites en Simple.sv\n2. Crear Identidad Digital\n3. Registrar Caso / Denuncia (SAC)\n4. Cursos ESIT\n5. Soporte Técnico"
+  
       "displayName": "consultar_tramite_simplesv",
       "trainingPhrases": [
         "¿Cuánto cuestan los antecedentes penales?",
         "Requisitos para solvencia policial",
         "Pasaporte en el exterior",
         "Apostillado electrónico",
-        "Trámites disponibles en Simple.sv"
-      ]
-    },
-    {
+    
       "displayName": "crear_identidad_digital",
-      "trainingPhrases": [
+      "trainingPhrases": 
         "¿Cómo creo mi cuenta en Simple.sv?",
         "No puedo iniciar sesión en login.gob.sv",
         "Pasos para registrar mi Identidad Digital",
         "¿Qué necesito para registrarme con DUI?"
-      ]
-    },
-    {
+    
       "displayName": "registrar_denuncia_sac",
-      "trainingPhrases": [
+      "trainingPhrases": 
         "Quiero poner un reclamo sobre un hospital",
         "Denuncia anónima en el SAC",
         "Registrar caso para educación o salud",
         "Consultar estado de expediente SAC"
-      ]
-    },
-    {
+    
       "displayName": "informacion_esit",
-      "trainingPhrases": [
+      "trainingPhrases": 
         "Cursos de la ESIT",
         "Capacitación en Scrum o MySQL",
         "Escuela Superior de Innovación y Tecnología",
         "Cursos gratuitos de gobernanza digital"
-      ]
-    },
-    {
+    
       "displayName": "contacto_soporte",
-      "trainingPhrases": [
+      "trainingPhrases": 
         "Hablar con un operador humano",
         "Correo de ayuda Simple.sv",
         "Teléfono del SAC",
         "Atención al cliente"
-      ]
-    }
-  ]
-}
-
-{
-  "displayName": "CSDC_Chatbot_Atencion_Ciudadana_CX",
-  "defaultLanguageCode": "es",
-  "timeZone": "America/El_Salvador",
-  "description": "Prototipo Lite de Chatbot Asistente en la Nube para el Centro de Servicios Digitales Ciudadanos (CSDC)",
-  "intents": [
-    {
-      "displayName": "welcome_intent",
-      "trainingPhrases": [
-        "Hola", "Buenas tardes", "Inicio", "Necesito información sobre trámites", "¿Qué consultas puedo hacer?"
-      ],
-      "responses": [
-        "¡Hola! 👋 Bienvenido al Asistente Virtual del Centro de Servicios Digitales Ciudadanos (CSDC). ¿En qué puedo ayudarte hoy?\n1. Trámites en Simple.sv\n2. Crear Identidad Digital\n3. Registrar Caso / Denuncia (SAC)\n4. Cursos ESIT\n5. Soporte Técnico"
-      ]
-    },
-    {
-      "displayName": "consultar_tramite_simplesv",
-      "trainingPhrases": [
-        "¿Cuánto cuestan los antecedentes penales?",
-        "Requisitos para solvencia policial",
-        "Pasaporte en el exterior",
-        "Apostillado electrónico",
-        "Trámites disponibles en Simple.sv"
-      ]
-    },
-    {
-      "displayName": "crear_identidad_digital",
-      "trainingPhrases": [
-        "¿Cómo creo mi cuenta en Simple.sv?",
-        "No puedo iniciar sesión en login.gob.sv",
-        "Pasos para registrar mi Identidad Digital",
-        "¿Qué necesito para registrarme con DUI?"
-      ]
-    },
-    {
-      "displayName": "registrar_denuncia_sac",
-      "trainingPhrases": [
-        "Quiero poner un reclamo sobre un hospital",
-        "Denuncia anónima en el SAC",
-        "Registrar caso para educación o salud",
-        "Consultar estado de expediente SAC"
-      ]
-    },
-    {
-      "displayName": "informacion_esit",
-      "trainingPhrases": [
-        "Cursos de la ESIT",
-        "Capacitación en Scrum o MySQL",
-        "Escuela Superior de Innovación y Tecnología",
-        "Cursos gratuitos de gobernanza digital"
-      ]
-    },
-    {
-      "displayName": "contacto_soporte",
-      "trainingPhrases": [
-        "Hablar con un operador humano",
-        "Correo de ayuda Simple.sv",
-        "Teléfono del SAC",
-        "Atención al cliente"
-      ]
-    }
-  ]
-}
 
 import os
 import json
