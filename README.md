@@ -44,11 +44,7 @@ csdc-chatbot-repo/
 
 ---
 
-## 🚀 Guía de Uso e Importación en GitHub
-1. Descomprimir el archivo ZIP descargado desde este repositorio.
-2. Inicializar Git en la carpeta del proyecto y publicar en tu cuenta de GitHub.
-3. Importar los archivos JSON de la carpeta `flows/` en Dialogflow CX o n8n.
-4. Ejecutar el webhook de `src/main.py` para procesar los registros de usuarios.
+
 
 # Configuración del Entorno - CSDC Chatbot Cloud
 GOOGLE_APPLICATION_CREDENTIALS=service_account.json
